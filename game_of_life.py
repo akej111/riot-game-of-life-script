@@ -12,6 +12,8 @@ INT_MAX = 9223372036854775807
 NUM_ITERATIONS = 10
 THREAD_COUNT = 4
 
+LIFE_VERSION = "#Life 1.06"
+
 def get_next_state_single_thread(alive_cells):
     # add all alive cells to cells we want to check for next state
     check_for_next = alive_cells.copy()
@@ -113,6 +115,11 @@ def get_surrounding_cells(cell):
         cells.append((x + 1, y - 1))
     return cells
 
+def print_in_life_format(cells):
+    print(LIFE_VERSION)
+    for cell in cells:
+        print(cell[0], cell[1])
+
 if __name__ == '__main__':
     '''
     input
@@ -139,4 +146,4 @@ if __name__ == '__main__':
     for _ in range(NUM_ITERATIONS):
         # cells = get_next_state_single_thread(cells)
         cells = get_next_state_multi_thread(cells, THREAD_COUNT)
-        print(list(cells))
+    print_in_life_format(list(cells))
